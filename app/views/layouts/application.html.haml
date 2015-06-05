@@ -1,0 +1,71 @@
+!!!
+%html
+  %head
+    %title= t('.branding')
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    = nav_bar fixed: :top, brand: t('.branding'), responsive: true do
+      = menu_group do
+        = menu_item t('.welcome'), root_path
+        - if current_user
+          = menu_item t('.accounts'), accounts_path
+          = menu_item t('.transfer'), new_transfer_path
+      = menu_group pull: :right do
+        - if current_user.try(:admin?)
+          = drop_down t('.admin') do
+            = menu_item t('.admin'), rails_admin_path
+            = menu_item t('.sysinfo'), sysinfo_path
+        = menu_item t('.about'), about_path
+        - if current_user
+          = drop_down current_user.email do
+            = menu_item t('.edit_profile'), edit_user_registration_path(current_user)
+            = drop_down_divider
+            = menu_item t('.sign_out'), destroy_user_session_path, method: 'delete'
+        - else
+          = drop_down t('.user') do
+            = menu_item t('.sign_in'), new_user_session_path
+            = drop_down_divider
+            = menu_item t('.sign_up'), new_user_registration_path
+        = drop_down image_tag(image_path("flags/#{I18n.locale}.gif")) do
+          - Settings.translations.application.each do |translation|
+            = menu_item link_to raw("#{image_tag(image_path("flags/#{translation}.gif"))} #{language_name(translation)}"), change_locale_path(:new_locale => translation)
+    .container.table-responsive
+      = bootstrap_flash
+      .row
+        = yield
+    .footer
+      .container
+        .row
+          %span.col-md-12
+            %h4= t('bureaupels')
+        .row
+          %span.col-md-4
+            %div
+              = icon(:map_marker)
+              = t('bureaupels_street')
+            %div
+              = icon(:map_marker)
+              = t('bureaupels_zipcode')
+              = t('bureaupels_place')
+            %div
+              = icon(:map_marker)
+              = t('bureaupels_country')
+          %span.col-md-4
+            %div
+              = icon(:phone)
+              = t('bureaupels_phone')
+            %div
+              = icon(:mobile)
+              = t('bureaupels_mobile')
+          %span.col-md-4
+            %div
+              = icon(:envelope)
+              <a href="mailto:info@bureaupels.nl">info@infobureaupels.nl</a>
+            %div
+              = icon(:globe)
+              <a href="http://www.bureaupels.nl/" target="_blank">www.bureaupels.nl</a>
+            %div
+              = icon(:rss)
+              <a href="http://blog.bureaupels.nl/" target="_blank">blog.bureaupels.nl</a>

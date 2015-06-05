@@ -1,0 +1,34 @@
+#----------------------------------------------------------------------------
+# We're using PostgreSQL as the database
+#
+default: &default
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+  host: 127.0.0.1
+  user: rubybank
+  passwd: rubybank
+
+development:
+  <<: *default
+  database: rubybank_dev
+
+#----------------------------------------------------------------------------
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+#
+test: &test
+  <<: *default
+  database: rubybank_tst
+
+cucumber:
+  <<: *test
+
+#----------------------------------------------------------------------------
+# Production database
+#
+production:
+  <<: *default
+  database: rubybank_prd
+

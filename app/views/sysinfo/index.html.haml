@@ -1,0 +1,18 @@
+%h1
+  Runtime information
+%pre
+  :preserve
+    commit-id: #{@git_version}
+    it is now: #{Time.current}
+     timezone: #{Time.zone}
+%h2
+  Version
+%pre
+  :preserve
+     ruby version: #{RUBY_VERSION}
+    rails version: #{Rails.version}
+%h2
+  Environment
+%pre
+  - ENV.each do |k, v|
+    #{k}: #{v}&#x000A;

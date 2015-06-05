@@ -1,0 +1,13 @@
+redis:
+  url: 'redis://localhost:6379/1'
+  semaphore:
+    ns: 'bestelmaar_semaphore_dev'
+  sidekiq:
+    ns: 'bestelmaar_sidekiq_dev'
+  session:
+    ns: 'bestelmaar_session_dev'
+
+email:
+  contact:
+    to: 'bestelmaar@bureaupels.nl'
+    from: 'no-reply@bureaupels.nl'

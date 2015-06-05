@@ -1,0 +1,25 @@
+= render 'shared/index_header', name: Account.model_name.human
+%table.table-bordered.table-striped
+  %thead
+    %tr
+      = thsortable 'id', '#'
+      = thsortable 'user', t('.user')
+      = thsortable 'iban', t('.description')
+      = thsortable 'comment', t('.query')
+      = thsortable 'balance', t('.balance')
+      = thsortable 'created_at', t('.created_at')
+      = thsortable 'updated_at', t('.updated_at')
+      %th
+        %i.icon-flag
+  %tbody
+    -@accounts.each do |account|
+      %tr
+        = render 'row', :account => account
+        %td
+          = link_to t(:'button.show'), account_path(account), :class => "btn btn-xs"
+          - if can? :update, account
+            = link_to t(:'button.edit'), edit_account_path(account), :class => "btn btn-xs"
+          - if can? :delete, account
+            = link_to t(:'button.destroy'), [account], :class => "btn btn-danger btn-xs", data: {confirm: t('alert.are_you_sure')}, method: :delete
+- if can? :create, Account
+  = link_to t(:'button.add'), new_account_path, :class => "btn btn-xs btn-success"

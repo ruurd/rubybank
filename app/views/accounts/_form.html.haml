@@ -1,0 +1,11 @@
+= bootstrap_form_for(@account) do |f|
+  %fieldset
+    = f.static_control label: t('.user') do
+      = current_user.email
+    = f.static_control label: t('.iban') do
+      = @account.iban
+    = f.text_field :comment
+
+    .form-actions
+      = f.button :submit, class: "btn-primary btn-xs", value: t('button.save')
+      = link_to t('button.cancel'), :back, class: "btn btn-xs"

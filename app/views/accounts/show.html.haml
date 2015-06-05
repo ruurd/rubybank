@@ -1,0 +1,58 @@
+= render 'shared/show_header', name: Account.model_name.human
+.row-fluid
+  %span.col-md-12
+    %table.table.table-striped.table-bordered.table-condensed
+      = render 'shared/show_thead'
+      %tbody
+        %tr
+          %td= t('.user')
+          %td= @account.user_name
+        %tr
+          %td= t('.iban')
+          %td= @account.iban
+        %tr
+          %td= t('.comment')
+          %td= t(@account.comment)
+.row-fluid
+  %span.col-md-12
+    %table.table-bordered.table-striped
+      %thead
+        %tr
+          %th #
+          = thsortable 'from_account', t('.from_account')
+          = thsortable 'correlation_code', t('.correlation_code')
+          = thsortable 'comment', t('.comment')
+          = thsortable 'date', t('.date')
+          = thsortable 'amount', t('.amount')
+          %th
+            %i.icon-flag
+      %tbody
+        %tr
+          %td
+          %td
+          %td
+          %td
+          %td= t('.initial_balance')
+          %td= @account.initial_balance
+          %td
+        -@account.mutations.decorate.each do |mutation|
+          %tr
+            %td= mutation.id
+            %td= mutation.from_iban
+            %td= mutation.correlation_code
+            %td= mutation.comment
+            %td= mutation.created_at
+            %td= mutation.amount
+            %td
+              = link_to t(:'button.show'), account_mutation_path(@account, mutation), :class => "btn btn-xs"
+        %tr
+          %td
+          %td
+          %td
+          %td
+          %td= t('.end_balance')
+          %td= @account.balance
+          %td
+.row-fluid
+  %span.col-md-12
+    = link_to t(:'button.back_to_list'), accounts_path, class: "btn btn-xs"

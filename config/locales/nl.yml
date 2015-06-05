@@ -1,0 +1,50 @@
+nl:
+  bureaupels: 'Bureau Pels'
+  bureaupels_street: 'Boogerd 1'
+  bureaupels_zipcode: '1791 GW'
+  bureaupels_place: 'Den Burg'
+  bureaupels_country: 'Nederland'
+  bureaupels_phone: '+31222315034'
+  bureaupels_mobile: '+31612914545'
+  copyright: '&copy; 2015 Bureau Pels'
+  languages:
+    en: 'Engels'
+    nl: 'Nederlands'
+  button:
+    add: 'Toevoegen'
+    back_to_list: 'Terug naar lijst'
+    cancel: 'Annuleren'
+    destroy: 'Verwijderen'
+    details: 'Details'
+    edit: 'Wijzigen'
+    ok: 'OK'
+    save: 'Opslaan'
+    search: 'Zoeken'
+    send: 'Verzenden'
+    sendagain: 'Nogmaals verzenden'
+    show: 'Tonen'
+  alert:
+    are_you_sure: 'Weet u het zeker?'
+  layouts:
+    application:
+      about: 'Over'
+      branding: 'Rubybank'
+      accounts: 'Rekeningen'
+      welcome: 'Welkom'
+      user: 'Gebruiker'
+      sign_in: 'Aanmelden'
+      sign_out: 'Afmelden'
+      sign_up: 'Registreren als gebruiker'
+      edit_profile: 'Gegevens wijzigen'
+  about:
+    index:
+      title: 'Over'
+      text: 'Deze webapplicatie is het resultaat van een assessment taak die ik heb gedaan voor Digidentity'
+  accounts:
+    index:
+      title: 'Rekeningen'
+  welcome:
+    index:
+      title: 'Welkom'
+      text: 'Wat deze applicatie doet en op welke manier'
+
