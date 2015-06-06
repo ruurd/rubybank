@@ -43,12 +43,19 @@ gem 'rails_admin'
 group :development do
   gem 'bullet'
   gem 'pry'
+  gem 'quiet-assets'
+  gem 'rubocop'
 end
 
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'guard'
+  gem 'guard-rails'
+  gem 'guard-test'
+  gem 'guard-rubocop'
+  gem 'terminal-notifier-guard'
 end
 
 group :test do
