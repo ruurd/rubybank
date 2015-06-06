@@ -23,7 +23,7 @@
           = thsortable 'correlation_code', t('.correlation_code')
           = thsortable 'comment', t('.comment')
           = thsortable 'date', t('.date')
-          = thsortable 'amount', t('.amount')
+          = thsortable 'amount_cents', t('.amount')
           %th
             %i.icon-flag
       %tbody
@@ -33,25 +33,24 @@
           %td
           %td
           %td= t('.initial_balance')
-          %td= @account.initial_balance
+          %td.text-right= humanized_money @account.initial_balance
           %td
-        -@account.mutations.decorate.each do |mutation|
+        -@account.mutations.order(:created_at).decorate.each do |mutation|
           %tr
             %td= mutation.id
             %td= mutation.from_iban
             %td= mutation.correlation_code
             %td= mutation.comment
             %td= mutation.created_at
-            %td= mutation.amount
+            %td.text-right= humanized_money mutation.amount, @account.initial_balance_currency
             %td
-              = link_to t(:'button.show'), account_mutation_path(@account, mutation), :class => "btn btn-xs"
         %tr
           %td
           %td
           %td
           %td
           %td= t('.end_balance')
-          %td= @account.balance
+          %td.text-right= humanized_money @account.balance
           %td
 .row-fluid
   %span.col-md-12

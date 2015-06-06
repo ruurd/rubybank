@@ -18,21 +18,23 @@ ActiveRecord::Schema.define(version: 20150605210613) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "iban",            limit: 18,                         null: false
-    t.string   "comment",         limit: 20,                         null: false
-    t.money    "initial_balance",            scale: 2, default: 0.0, null: false
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
+    t.string   "iban",                     limit: 18,                 null: false
+    t.string   "comment",                  limit: 20,                 null: false
+    t.integer  "initial_balance_cents",               default: 0,     null: false
+    t.string   "initial_balance_currency",            default: "EUR", null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
   end
 
   create_table "mutations", force: :cascade do |t|
-    t.integer  "account_id",                                            null: false
-    t.integer  "from_account_id",                                       null: false
+    t.integer  "account_id",                                  null: false
+    t.integer  "from_account_id",                             null: false
     t.string   "comment"
-    t.money    "amount",                      scale: 2,                 null: false
-    t.datetime "created_at",                                            null: false
-    t.datetime "updated_at",                                            null: false
-    t.string   "correlation_code", limit: 16,           default: "xxx", null: false
+    t.integer  "amount_cents",                default: 0,     null: false
+    t.string   "amount_currency",             default: "EUR", null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.string   "correlation_code", limit: 16, default: "xxx", null: false
   end
 
   create_table "users", force: :cascade do |t|

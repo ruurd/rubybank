@@ -5,8 +5,4 @@ class AccountDecorator < Draper::Decorator
     user.email
   end
 
-  def balance
-    initial_balance + mutations.sum(:amount)
-  end
-
 end

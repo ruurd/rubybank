@@ -1,8 +1,14 @@
+# Transfers
 class TransfersController < ApplicationController
+
+  # Instantiate a transfer and show the form
   def new
     @transfer = Transfer.new
     end
 
+  # Instantiate a transfer from the params passed then create the
+  # necessary Mutation instances to update the database and transfer
+  # the money between accounts
   def create
     @transfer = Transfer.new(transfer_params)
 
@@ -25,8 +31,10 @@ class TransfersController < ApplicationController
             correlation_code: correlation,
             from_account: to_account,
             comment: @transfer.comment,
-            amount: amount
+            amount: -amount
         )
+
+        # Save them in one transaction then redirect
         Mutation.transaction do
           add_mutation.save!
           sub_mutation.save!
@@ -44,6 +52,4 @@ class TransfersController < ApplicationController
   def transfer_params
     params.require(:transfer).permit(:from_account_id, :to_account_id, :comment, :amount)
   end
-
-
 end

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   # Use devise for authentication
-  devise_for :users
+  devise_for :user
 
   # Keepalive monitoring
   get 'keepalive', to: 'keepalive#keepalive'
@@ -14,9 +14,7 @@ Rails.application.routes.draw do
     get 'sysinfo', to: 'sysinfo#index'
 
     resources :users
-    resources :accounts, only: [:index, :show, :edit] do
-      resources :mutations, only: [:index, :show]
-    end
+    resources :accounts, only: [:index, :show, :edit]
     resources :transfers, only: [:new, :create]
   end
 

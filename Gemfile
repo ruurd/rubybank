@@ -43,7 +43,7 @@ gem 'rails_admin'
 group :development do
   gem 'bullet'
   gem 'pry'
-  gem 'quiet-assets'
+  gem 'quiet_assets'
   gem 'rubocop'
 end
 

@@ -5,8 +5,4 @@ class MutationDecorator < Draper::Decorator
     from_account.iban
   end
 
-  def balance
-    mutations.sum(:amount)
-  end
-
 end

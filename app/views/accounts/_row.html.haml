@@ -2,6 +2,9 @@
 %td= account.user_name
 %td= account.iban
 %td= account.comment
-%td= account.balance
+%td.text-right= humanized_money account.initial_balance, account.initial_balance_currency
+%td.text-right= humanized_money account.received, account.initial_balance_currency
+%td.text-right= humanized_money account.paid, account.initial_balance_currency
+%td.text-right= humanized_money account.balance, account.initial_balance_currency
 %td= account.created_at
 %td= account.updated_at

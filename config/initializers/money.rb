@@ -25,23 +25,23 @@ MoneyRails.configure do |config|
 
   # Default ActiveRecord migration configuration values for columns:
   #
-  config.amount_column = { prefix: '',           # column name prefix
-                           postfix: '_cents',    # column name  postfix
-                           column_name: nil,     # full column name (overrides prefix, postfix and accessor name)
-                           type: :integer,       # column type
-                           present: true,        # column will be created
-                           null: false,          # other options will be treated as column options
-                           default: 0
-                         }
+  config.amount_column = {prefix: '', # column name prefix
+                          postfix: '_cents', # column name  postfix
+                          column_name: nil, # full column name (overrides prefix, postfix and accessor name)
+                          type: :integer, # column type
+                          present: true, # column will be created
+                          null: false, # other options will be treated as column options
+                          default: 0
+  }
 
-  config.currency_column = { prefix: '',
-                             postfix: '_currency',
-                             column_name: nil,
-                             type: :string,
-                             present: true,
-                             null: false,
-                             default: 'EUR'
-                           }
+  config.currency_column = {prefix: '',
+                            postfix: '_currency',
+                            column_name: nil,
+                            type: :string,
+                            present: true,
+                            null: false,
+                            default: 'EUR'
+  }
 
   # Register a custom currency
   #
@@ -59,12 +59,7 @@ MoneyRails.configure do |config|
   # }
 
   # Set default money format globally.
-  # Default value is nil meaning "ignore this option".
-  # Example:
-  #
-  # config.default_format = {
-  #   :no_cents_if_whole => nil,
-  #   :symbol => nil,
-  #   :sign_before_symbol => nil
-  # }
+  config.no_cents_if_whole = false
+  config.symbol = true
+  config.sign_before_symbol = false
 end
