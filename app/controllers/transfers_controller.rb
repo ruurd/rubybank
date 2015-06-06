@@ -12,8 +12,8 @@ class TransfersController < ApplicationController
   def create
     @transfer = Transfer.new(transfer_params)
 
-    from_account = Account.find(@transfer.from_account_id).decorate
-    to_account = Account.find(@transfer.to_account_id).decorate
+    from_account = Account.find(@transfer.from_account_id)
+    to_account = Account.find(@transfer.to_account_id)
 
     if (from_account.id != to_account.id)
       amount = BigDecimal.new(@transfer.amount)
@@ -41,10 +41,12 @@ class TransfersController < ApplicationController
         end
         redirect_to from_account, notice: 'Transfer successfully executed.'
       else
-        render action: 'new', notice: 'Balance is not enough to transfer this amount'
+        flash.notice = 'Balance is not enough to transfer this amount'
+        render action: 'new'
       end
     else
-      render action: 'new', notice: 'You cannot transfer money to the same account'
+      flash.notice = 'You cannot transfer money to the same account'
+      render action: 'new'
     end
   end
 
