@@ -2,10 +2,7 @@ class Mutation < ActiveRecord::Base
   belongs_to :account
   belongs_to :from_account, class_name: Account
 
-  monetize :amount_cents_cents, :allow_nil => false, :numericality => {
-                                  :greater_than_or_equal_to => 0
-                              }
-
+  monetize :amount_cents
 
   # OK this $%^&*( sucks because I think this is
   # PostgreSQL specific.
